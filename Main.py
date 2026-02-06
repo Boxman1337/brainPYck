@@ -9,6 +9,7 @@ class Interpreter:
         self.dataIdx = 0
         self.instructionIdx = 0
 
+    # TODO: Rework control flow
     def getInstruction(self):
         match self.program[self.instructionIdx]:
             case '+':
@@ -41,11 +42,13 @@ class Interpreter:
     def output(self):
         print(chr(self.tape[self.dataIdx]), end="")
         self.instructionIdx += 1
-
+    
+    # TODO: Add bound checking, wrap-around
     def moveLeft(self):
         self.dataIdx -= 1
         self.instructionIdx += 1
 
+    # TODO: Add bound checking, wrap-around
     def moveRight(self):
         self.dataIdx += 1
         self.instructionIdx += 1
@@ -60,6 +63,7 @@ class Interpreter:
         self.tape[self.dataIdx] = (curr - 1) % 256
         self.instructionIdx += 1
 
+    # TODO: Add jump table, currently O(n^2)
     def jumpEqZ(self):
         if (self.tape[self.dataIdx] != 0):
             self.instructionIdx += 1
@@ -79,6 +83,7 @@ class Interpreter:
                 else:
                     counter -= 1
 
+    # TODO: Add jump table, currently O(n^2)
     def jumpNeZ(self):
         if (self.tape[self.dataIdx] == 0):
             self.instructionIdx += 1
