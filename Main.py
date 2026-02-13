@@ -1,4 +1,4 @@
-
+ 
 
 class Interpreter:
     def __init__(self, program: str, size: int):
